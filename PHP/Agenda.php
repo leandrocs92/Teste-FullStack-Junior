@@ -22,36 +22,33 @@
     // eventos formatados pelo método getEstadoEmArrayAssociativo na classe Evento
 
     public function imprimirJsonEventosDiaOrdenados ($dataHoraDia){
-      $this->filtrarEventosDia($dataHoraDia);
+      $this->eventos = $this->filtrarEventosDia($dataHoraDia);
+      $auxArray = [];
+      //var_dump($this->eventos);
+      for($i=0;$i<count($this->eventos);$i++){
+        array_push($auxArray, $this->eventos[$i]->getEstadoEmArrayAssociativo());
+      }
+      //var_dump($auxArray);
+      usort($auxArray, function($a, $b) {
+        return $a['dataHora'] <=> $b['dataHora'];
+      });
+      
+      return json_encode($auxArray);
+
       
     }
 
 
     private function filtrarEventosDia($dataHoraDia){
-      /*$eventoAssociado = $this->eventos->getEstadoEmArrayAssociativo();
-      $dataHoraDia = is_string($dataHoraDia) ? new DateTime($dataHoraDia) : $dataHoraDia;
-      $dataHoraDia = $dataHoraDia->format(DATE_ISO8601);*/
-      $filtrados = [];
-      
-      for ($i = 0; $i < count($this->eventos); $i++){
-        //$vetor = get_object_vars($this->eventos[$i]);
-        $filtrados = $this->eventos[$i]->getDataHora();
-        //var_dump($vetor);
-        
-        
-        
+      $newArray = [];
+      $obj = $this->eventos;
+      for($i=0;$i<count($obj);$i++){
+        if($obj[$i]->getDataHora()->format('Y-m-d') == $dataHoraDia){
+          array_push($newArray, $this->eventos[$i]);
+        }
       }
-      if(in_array($dataHoraDia, $filtrados)){
-        //$filtrados.array_push($this->eventos[$i]);
-        //echo ("Existe");
-      } 
-      var_dump($filtrados);
-      /*$filter = array_values(array_filter($this->eventos, function($value) use ($dataHoraDia){
-        return $value == $dataHoraDia;
-      }));*/
-      // TODO implementar o método que filtrará os eventos do estado da Agenda,
-      // retornando apenas os da data informada por parâmetro - sem alterar o estado
-      // do objeto Agenda
+      //var_dump($newArray);
+      return $newArray;
     }
   }
 ?>
