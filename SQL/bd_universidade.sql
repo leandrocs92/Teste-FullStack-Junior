@@ -1,3 +1,4 @@
+-- Active: 1665255395116@@127.0.0.1@3306@bd_universidade
 /*!40101 SET NAMES utf8 */;
 
 /*!40101 SET SQL_MODE=''*/;

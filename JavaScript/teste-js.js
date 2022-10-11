@@ -77,29 +77,33 @@ const pessoas = [
 ];
 
 // TODO implementar função assíncrona e anônima separarPorIdade
-async function separarPorIdade (pessoas) {
-  let nomesIdadeImpar = [];
-  let nomesIdadePar = [];
+let separarPorIdade = async function(pessoas) {
+  let idadeImpar = [];
+  let idadePar = [];
+  let result = [];
 
   for (let i = 0; i <= pessoas.length; i++){
     if (pessoas[i].idade % 2 == 0){
-      nomesIdadePar.push(pessoas[i].nome);
+      idadePar.push(pessoas[i].nome);
     } else{
-      nomesIdadeImpar.push(pessoas[i].nome)
+      idadeImpar.push(pessoas[i].nome)
     }
   }
 
-  return pessoasDivididas = [nomesIdadeImpar, nomesIdadePar];
+  result['idadePar'] = idadePar;
+  result['idadeImpar'] = idadeImpar;
+
+  return result;
   
 }
 
 separarPorIdade(pessoas).then((resposta) => {
   // TODO imprimir no console a quantidade de nomes de pessoas com idade par. Saída esperada: 7
-  print (resposta[nomesIdadePar].length);
+  console.log('Pessoas com Idade Par = ', resposta['idadePar'].length);
   // TODO imprimir no console a quantidade de nomes de pessoas com idade impar. Saída esperada: 7
-  print (resposta[nomesIdadeImpar].length);
+  console.log('Pessoas com Idade Impar = ', resposta['idadeImpar'].length);
   // TODO imprimir no console a os nomes de pessoas com idade par ordenados alfabeticamente. Saída esperada: ['Adriana', 'Bruno', 'Claudio', 'Flavia', 'Jaison', 'Marcia', 'Rafael']
-  print (resposta[nomesIdadePar].sort());
+  console.log('Nome Pessoas com Idade Par = ', resposta['idadePar'].sort());
   // TODO imprimir no console a os nomes de pessoas com idade ímpar ordenados alfabeticamente. Saída esperada: ['Ambrosina', 'André', 'Brenda', 'Carlinhos', 'Edenilson', 'José', 'Nivea']
-  print (resposta[nomesIdadeImpar].sort());
+  console.log('Nome Pessoas com Idade Impar = ', resposta['idadeImpar'].sort());
 });

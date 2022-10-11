@@ -3,7 +3,7 @@
 
 Com base no SQL do banco de dados Mysql 5.7 presente no repositório (bd_universidade.sql), elabore consultas SQL que busquem o que se pede baixo:
 
-a) Encontre a MATRÍCULA(s) dos alunos com nota em BD12015-1menor que 90;
+a) Encontre a MATRÍCULA(s) dos alunos com nota em BD12015-1 menor que 90;
 
 b) Encontre a MATRÍCULA(s) e calcule a média das notas dos alunos na disciplina de POO2015-1. 
 
